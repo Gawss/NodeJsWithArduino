@@ -1,7 +1,7 @@
 const apiai = require('apiai');
 const config = require('./config.js');//Module that returns the tokens.
 
-"use strict"
+'use strict'
 
 class chatBot_ {
 

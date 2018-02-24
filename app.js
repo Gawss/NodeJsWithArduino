@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 const userMap = new Map();
 var sessionIds = new Map();
 
-"use strict";
+'use strict';
 var chatBot_ = require("./chatBot_class.js");
 var chatBot = new chatBot_();
 
@@ -33,7 +33,6 @@ app.use(express.static('resources'));
 
 app.get('/sendmsg', (req, res) => {
   response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
-
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({ "speech": response, "displayText": response
@@ -130,6 +129,12 @@ app.post('/ai', (req, res) => {
 		
 //-----------------------------------------------------------------------------
     }
+	response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
+
+	res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+	res.send(JSON.stringify({ "speech": response, "displayText": response
+	//"speech" is the spoken version of the response, "displayText" is the visual version
+	}));
 
 });
 
