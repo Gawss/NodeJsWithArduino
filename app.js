@@ -1,10 +1,7 @@
 const bodyParser = require('body-parser');
 const request = require('request');
 const uuid = require('uuid');
-const apiai = require('apiai');
 const fs = require('fs');
-
-const config = require('./config.js');//Module that returns the tokens.
 
 //------------------------------------------------------------------- SERVER WORKING...
 const express = require('express');
@@ -18,7 +15,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 app.get('/', (req, res) => {
     console.log("get /----->");
     //res.status(200).send("correcto");
-    res.send(':DDDDD');
+    res.send('Chatbot --- Created');
 });
 
 //-------------------------------------------------------------------
