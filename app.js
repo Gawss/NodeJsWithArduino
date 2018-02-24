@@ -1,19 +1,15 @@
-var express = require('express');
-var app = express();
+const bodyParser = require('body-parser');
+const request = require('request');
+const uuid = require('uuid');
+const apiai = require('apiai');
+const fs = require('fs');
 
-/*
-app.listen(5000, function() {
-  console.log('Example app listening on port Hu3');
-});
+const config = require('./config.js');//Module that returns the tokens.
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
-});
+//------------------------------------------------------------------- SERVER WORKING...
+const express = require('express');
+const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('resources'));
-*/
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
     console.log("funciona------> get", __dirname);
@@ -24,3 +20,15 @@ app.get('/', (req, res) => {
     //res.status(200).send("correcto");
     res.send(':DDDDD');
 });
+
+//-------------------------------------------------------------------
+
+const userMap = new Map();
+var sessionIds = new Map();
+
+var chatBot_ = require("./chatBot_class.js");
+let chatBot = new chatBot_();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('resources'));
