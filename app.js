@@ -96,6 +96,9 @@ app.post('/ai', (req, res) => {
 
     let quick_replies = [];
     let error = false;
+
+	let message;
+	let text = ' ';
     //---------------------------------//
 
     switch (action) {
@@ -105,10 +108,7 @@ app.post('/ai', (req, res) => {
 			let lol = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);			
 			if(lol === 'lol'){
 				console.log("lol recived");
-				//console.log("SESSION_ID---------------------------->", sessionId);
-				//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
 				text = 'lol recived - hu3'
-
 			}
 			else{
 				console.log("lol wasnt recived");
