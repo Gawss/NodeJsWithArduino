@@ -36,7 +36,7 @@ app.get('/sendmsg', (req, res) => {
 
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
-  res.send(JSON.stringify({ "speech": response, "displayText": response 
+  res.send(JSON.stringify({ "speech": response, "displayText": response
   //"speech" is the spoken version of the response, "displayText" is the visual version
   }));
 });
@@ -107,37 +107,17 @@ app.post('/ai', (req, res) => {
 				console.log("lol recived");
 				//console.log("SESSION_ID---------------------------->", sessionId);
 				//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
-				text = 'lol recived, hu3'
-				
-				quick_replies = [
-					{
-					  content_type: "text",
-					  title: 'Consultar saldo',
-					  payload: "consulta_saldos"
-					},
-					{
-					  content_type: "text",
-					  title: 'Bloquear cuenta',
-					  payload: "bloquear_cuenta"
-					}
-				]
+				text = 'lol recived - hu3'
+
 			}
 			else{
 				console.log("lol wasnt recived");
 				text = 'fak u'
-				quick_replies = [
-					{
-					  content_type: "text",
-					  title: '¿Qué más puedo hacer?',
-					  payload: "ayuda"
-					}
-				]
 
 			}
-			
+
 			message = {
-			  text: text,
-			  quick_replies: quick_replies
+			  text: text
 			}
 			return res.json({
 				speech: text,
