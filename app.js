@@ -32,13 +32,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('resources'));
 
 app.get('/sendmsg', (req, res) => {
-	
-	response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
-	res.send('Hu3 -');
-	
-	res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
-	res.send(JSON.stringify({ "speech": response, "displayText": response 
-}
+  response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
+
+
+  res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+  res.send(JSON.stringify({ "speech": response, "displayText": response 
+  //"speech" is the spoken version of the response, "displayText" is the visual version
+  }));
+};
 
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
