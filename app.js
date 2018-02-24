@@ -9,11 +9,11 @@ app.listen(5000, function() {
 app.get('/', function(req, res) {
   res.send('Hello World!');
 });
-*/
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('resources'));
-
+*/
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
     console.log("funciona------> get", __dirname);
