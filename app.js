@@ -101,9 +101,26 @@ app.post('/ai', (req, res) => {
 
     switch (action) {
 //-----------------------------------------------------------------------------
-		case 'input.unknown':
+		case 'question':
             console.log(req);			
-			
+			text = 'Melo'	
+			quick_replies = [
+				{
+				  content_type: "text",
+				  title: 'hu3',
+				  payload: "hu3"
+				}
+			]
+			message = {
+			  text: text,
+			  quick_replies: quick_replies
+			}
+			return res.json({
+				speech: text,
+				displayText: text,
+				messages: message,
+				source: 'question'
+			});
             //notifications.notifications(res, req);
             break;
 		
