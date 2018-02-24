@@ -31,6 +31,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('resources'));
 
+app.get('/sendmsg', (req, res) => {
+	
+	response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
+	res.send('Hu3 -');
+	
+	res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+	res.send(JSON.stringify({ "speech": response, "displayText": response 
+}
+
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
     console.log("get----->");
@@ -60,17 +69,6 @@ app.post('/webhook', (req, res) => {
                     chatBot.sendMessage(event.message.attachments, event.sender.id.toString());
                 } else if (event.postback && event.postback.payload === 'getStarted') {
                     chatBot.sendMessage(event.postback.payload, event.sender.id.toString());
-                } else if(event.account_linking) {
-                    let msj;
-                    if(event.account_linking.status === 'linked'){
-                        msj = "Ingreso exitoso 😉! Te encuentras en una zona segura 🔐. Cuando necesites saber qué puedes hacer escríbeme la palabra 'ayuda'";
-                    }else if(event.account_linking.status === 'unlinked'){
-                        msj = "Tu cuenta ha sido desvinculada.";
-                    }else{
-                        msj = "Tu cuenta no ha sido reconocidad, por favor intentalo nuevamente";
-                    }
-                    chatBot.sendMessage(event.account_linking.authorization_code, event.sender.id.toString());
-                    //chatBot.callbackFacebook(event.sender.id.toString(), { text: msj });
                 }else{
                     chatBot.sendEvent(event.postback.payload, event.sender.id.toString());
                 }
