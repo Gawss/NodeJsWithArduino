@@ -26,8 +26,9 @@ app.get('/', (req, res) => {
 const userMap = new Map();
 var sessionIds = new Map();
 
+"use strict";
 var chatBot_ = require("./chatBot_class.js");
-let chatBot = new chatBot_();
+var chatBot = new chatBot_();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
