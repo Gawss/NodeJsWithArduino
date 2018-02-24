@@ -1,9 +1,9 @@
 //Configuration data
 module.exports = {
-  facebook_token : "EAABbuWnnQHoBAAMFpZBc9fmbwIrAjtKlA85G1Gpb5CjH1HFZARvHgjjZBCdjr511tI7FZBMcrDbQ1eEQljohMdh9QHCwMgmtgMExARhRIWiMstK02NB9Gu3ZA52jyN60k5DfglB4BSeZBQxKTngOEjqhJG1Buucj605K3V9ZBjbygZDZD",
-  apiAI_token    : "d9ee0ae9d4244f06984494103b3d7271",
+  facebook_token : "EAACiBqo8ZCOkBAF4MfcKItM9etUn9jJoM9IwLDtAcQJGZAEfGesqwTZAaEQZAjHTIwsMZBEu9ZBAclsmCjO68fNPGVVkMzmXIJZC25Mh7rS2ElKg6VLsM0xiLRwLOhg2QxPedU39roCBvc3P9rSdRF5eeHqu3BysCGC8Sj5rgaPZCnLq1LnpgQWJ",
+  apiAI_token    : "c784f007-5f80-4fce-99b7-1f1a8b3ca208",
   apiAI_developer_token: "4884d96f37ba401ea46e3e2a80597f56",
-  v: "20170516"
+  v: "20180223"
 }
 
 module.exports.headers = {
@@ -20,6 +20,6 @@ module.exports.headers = {
         "contentType": "application/json"
       };
 
-module.exports.serverApiStore = 'https://demo01.todo1.com/t1-as-trx-web/rest/5.0';
+//module.exports.serverApiStore = 'https://demo01.todo1.com/t1-as-trx-web/rest/5.0';
 
 
