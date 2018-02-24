@@ -112,7 +112,6 @@ app.post('/ai', (req, res) => {
 			else{
 				console.log("lol wasnt recived");
 				text = 'fak u'
-
 			}
 
 			message = {
