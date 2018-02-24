@@ -102,7 +102,7 @@ app.post('/ai', (req, res) => {
     switch (action) {
 //-----------------------------------------------------------------------------
 		case 'question':
-            console.log(req);			
+            console.log('recived ?');			
 			text = 'Melo'	
 			quick_replies = [
 				{
