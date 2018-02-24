@@ -53,13 +53,13 @@ app.post('/webhook', (req, res) => {
                 console.log("event");
                 console.log(event);
                 if (event.message && event.message.text) {
-                    todo1ChatBot.sendMessage(event.message.text, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.text, event.sender.id.toString());
                 } else if (event.message && event.message.sticker_id) {
-                    todo1ChatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
                 }else if (event.message && event.message.attachments) {
-                    todo1ChatBot.sendMessage(event.message.attachments, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.attachments, event.sender.id.toString());
                 } else if (event.postback && event.postback.payload === 'getStarted') {
-                    todo1ChatBot.sendMessage(event.postback.payload, event.sender.id.toString());
+                    chatBot.sendMessage(event.postback.payload, event.sender.id.toString());
                 } else if(event.account_linking) {
                     let msj;
                     if(event.account_linking.status === 'linked'){
@@ -69,10 +69,10 @@ app.post('/webhook', (req, res) => {
                     }else{
                         msj = "Tu cuenta no ha sido reconocidad, por favor intentalo nuevamente";
                     }
-                    todo1ChatBot.sendMessage(event.account_linking.authorization_code, event.sender.id.toString());
-                    //todo1ChatBot.callbackFacebook(event.sender.id.toString(), { text: msj });
+                    chatBot.sendMessage(event.account_linking.authorization_code, event.sender.id.toString());
+                    //chatBot.callbackFacebook(event.sender.id.toString(), { text: msj });
                 }else{
-                    todo1ChatBot.sendEvent(event.postback.payload, event.sender.id.toString());
+                    chatBot.sendEvent(event.postback.payload, event.sender.id.toString());
                 }
 
             });
