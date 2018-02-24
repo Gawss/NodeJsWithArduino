@@ -1,6 +1,6 @@
 module.exports = {
 
-	class Todo1ChatBot {
+	class chatBot_ {
 
 		constructor() {
 			this.apiaiApp = apiai(config.apiAI_token);
