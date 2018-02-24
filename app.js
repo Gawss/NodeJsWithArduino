@@ -98,19 +98,18 @@ app.post('/ai', (req, res) => {
     let quick_replies = [];
     let error = false;
     //---------------------------------//
-/*
+
     switch (action) {
 //-----------------------------------------------------------------------------
-		
-		case 'notificaciones':
-            console.log("hola notificaciones");			
+		case 'input.unknown':
+            console.log(req);			
 			
-            notifications.notifications(res, req);
+            //notifications.notifications(res, req);
             break;
 		
 //-----------------------------------------------------------------------------
     }
-*/
+
 });
 
 function cleanedString(data) {
