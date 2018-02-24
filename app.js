@@ -102,15 +102,40 @@ app.post('/ai', (req, res) => {
     switch (action) {
 //-----------------------------------------------------------------------------
 		case 'question':
-            console.log('recived ?');			
-			text = 'Melo'	
-			quick_replies = [
-				{
-				  content_type: "text",
-				  title: 'hu3',
-				  payload: "hu3"
-				}
-			]
+            console.log('recived');
+			let lol = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);			
+			if(lol === 'lol'){
+				console.log("lol recived");
+				//console.log("SESSION_ID---------------------------->", sessionId);
+				//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
+				text = 'lol recived, hu3'
+				
+				quick_replies = [
+					{
+					  content_type: "text",
+					  title: 'Consultar saldo',
+					  payload: "consulta_saldos"
+					},
+					{
+					  content_type: "text",
+					  title: 'Bloquear cuenta',
+					  payload: "bloquear_cuenta"
+					}
+				]
+			}
+			else{
+				console.log("lol wasnt recived");
+				text = 'fak u'
+				quick_replies = [
+					{
+					  content_type: "text",
+					  title: '¿Qué más puedo hacer?',
+					  payload: "ayuda"
+					}
+				]
+
+			}
+			
 			message = {
 			  text: text,
 			  quick_replies: quick_replies
