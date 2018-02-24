@@ -1,10 +1,13 @@
 var express = require('express');
 var app = express();
 
-
 /*
 app.listen(5000, function() {
   console.log('Example app listening on port Hu3');
+});
+
+app.get('/', function(req, res) {
+  res.send('Hello World!');
 });
 */
 const server = app.listen(process.env.PORT || 5000, () => {
@@ -12,6 +15,8 @@ const server = app.listen(process.env.PORT || 5000, () => {
     console.log("funciona------> get", __dirname);
 });
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
+app.get('/', (req, res) => {
+    console.log("get /----->");
+    //res.status(200).send("correcto");
+    res.send(':DDDDD');
 });
