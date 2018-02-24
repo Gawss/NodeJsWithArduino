@@ -39,7 +39,7 @@ app.get('/sendmsg', (req, res) => {
   res.send(JSON.stringify({ "speech": response, "displayText": response 
   //"speech" is the spoken version of the response, "displayText" is the visual version
   }));
-};
+});
 
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
