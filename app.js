@@ -13,7 +13,7 @@ const notifications = require('./actions/notifications.js');
 
 
 const userMap = new Map();
-//var sessionIds = new Map();
+var sessionIds = new Map();
 
 
 class chatBot_ {
