@@ -1,6 +1,7 @@
 const apiai = require('apiai');
 const config = require('./config.js');//Module that returns the tokens.
 const uuid = require('uuid');
+const request = require('request');
 
 //'use strict'
 
