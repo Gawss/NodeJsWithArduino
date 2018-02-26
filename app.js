@@ -244,7 +244,8 @@ app.post('/webhook', (req, res) => {
 /* Webhook for API.ai to get response from the 3rd party API */
 app.post('/ai', (req, res) => {
     console.log('*** Webhook for api.ai ***');
-    console.log(req.body.result);
+    //console.log(req.body.result);
+	console.log(req.body.result.fulfillment.messages[0]);
 
     // Validate if user has type unless one time the password: for now with LOCAL STORAGE//
     // -------------------------------------------------------------------------------- //
