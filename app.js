@@ -120,7 +120,7 @@ app.post('/ai', (req, res) => {
 		
 //-----------------------------------------------------------------------------
     }
-	console.log(res.body);
+	console.log(res);
 });
 
 function cleanedString(data) {
