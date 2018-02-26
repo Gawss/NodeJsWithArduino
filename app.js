@@ -268,8 +268,8 @@ app.post('/webhook', (req, res) => {
 /* Webhook for API.ai to get response from the 3rd party API */
 app.post('/ai', (req, res) => {
     console.log('*** Webhook for api.ai ***');
-    //console.log(req.body.result);
-	console.log(req.body.result.fulfillment.messages[0]);
+    console.log(req.body.result);
+	//console.log(req.body.result.fulfillment.messages[0]);
 
     //general variables for every action//
     let action = req.body.result.action;
