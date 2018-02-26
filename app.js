@@ -109,18 +109,19 @@ app.post('/ai', (req, res) => {
 			message = {
 			  text: text
 			}
-			return res.json({
-				speech: text,
-				displayText: text,
-				messages: message,
-				source: 'question'
-			});
             //notifications.notifications(res, req);
             break;
 		
 //-----------------------------------------------------------------------------
     }
-	console.log(res);
+	console.log(res.json);
+	return res.json({
+		speech: text,
+		displayText: text,
+		messages: message,
+		source: 'question'
+	});
+
 });
 
 function cleanedString(data) {
