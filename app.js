@@ -93,12 +93,12 @@ app.post('/ai', (req, res) => {
     //general variables for every action//
     let action = req.body.result.action;
     let sessionId = req.body.sessionId;
-
-    let quick_replies = [];
-    let error = false;
-
+	
 	let message;
 	let text = ' ';
+    let quick_replies = [];
+    
+	let error = false;
     //---------------------------------//
 
     switch (action) {
@@ -132,13 +132,6 @@ app.post('/ai', (req, res) => {
 		
 //-----------------------------------------------------------------------------
     }
-	response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
-
-	res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
-	res.send(JSON.stringify({ "speech": response, "displayText": response
-	//"speech" is the spoken version of the response, "displayText" is the visual version
-	}));
-
 });
 
 function cleanedString(data) {
