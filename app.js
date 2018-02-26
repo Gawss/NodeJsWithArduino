@@ -3,6 +3,7 @@ const request = require('request');
 const uuid = require('uuid');
 const fs = require('fs');
 const apiai = require('apiai');
+
 var showmsg = 'hu3';
 //------------------------------------------------------------------- SERVER WORKING...
 const express = require('express');
@@ -182,9 +183,3 @@ Number.prototype.format = function(n, x, s, c) {
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
-
-
-
-
-
-
