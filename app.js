@@ -81,7 +81,8 @@ app.post('/webhook', (req, res) => {
 app.post('/ai', (req, res) => {
     console.log('*** Webhook for api.ai ***');
     console.log(req.body.result);
-
+	console.log(sessionIds.toString());
+	console.log(chatBot.sessionIds.toString());
     //general variables for every action//
     let action = req.body.result.action;
     let sessionId = req.body.sessionId;
