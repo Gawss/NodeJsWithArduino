@@ -87,9 +87,6 @@ app.post('/ai', (req, res) => {
     console.log('*** Webhook for api.ai ***');
     console.log(req.body.result);
 
-    // Validate if user has type unless one time the password: for now with LOCAL STORAGE//
-    // -------------------------------------------------------------------------------- //
-
     //general variables for every action//
     let action = req.body.result.action;
     let sessionId = req.body.sessionId;
