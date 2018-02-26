@@ -5,8 +5,8 @@ const fs = require('fs');
 const apiai = require('apiai');
 
 //'use strict';
-var chatBot_ = require("./chatBot_class.js");
-var chatBot = new chatBot_();
+const chatBot_ = require("./chatBot_class.js");
+const chatBot = new chatBot_();
 
 
 var showmsg = 'hu3';
