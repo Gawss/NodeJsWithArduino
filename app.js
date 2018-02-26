@@ -16,7 +16,7 @@ const userMap = new Map();
 //var sessionIds = new Map();
 
 
-class chatBot {
+class chatBot_ {
 
     constructor() {
         this.apiaiApp = apiai(config.apiAI_token);
@@ -185,7 +185,7 @@ class chatBot {
     }
 }
 
-let chatBot = new chatBot();
+let chatBot = new chatBot_();
 const app = express();
 
 app.use(bodyParser.json());
