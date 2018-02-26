@@ -210,7 +210,31 @@ app.get('/webhook', (req, res) => {
 
 app.get('/', (req, res) => {
     console.log("get /----->");
-	res.send('Use the /webhook endpoint.')
+	
+	let message;
+	let quick_replies = [];
+	let text = ' ';
+	
+	text = 'okkkkkkkkkkkk'	
+	quick_replies = [
+		{
+		  content_type: "text",
+		  title: '¿Qué más puedo hacer?',
+		  payload: "ayuda"
+		}
+	]
+	
+	message = {
+	  text: text,
+	  quick_replies: quick_replies
+	}
+	
+	return res.json({
+		speech: text,
+		displayText: text,
+		messages: message,
+		source: 'notificaciones'
+	});
 	
 });
 
