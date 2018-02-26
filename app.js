@@ -8,10 +8,6 @@ const apiai = require('apiai');
 var chatBot_ = require("./chatBot_class.js");
 var chatBot = new chatBot_();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('resources'));
-
 
 var showmsg = 'hu3';
 //------------------------------------------------------------------- SERVER WORKING...
@@ -20,6 +16,10 @@ const app = express();
 
 const userMap = new Map();
 var sessionIds = new Map();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('resources'));
 
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
