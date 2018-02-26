@@ -16,7 +16,7 @@ const userMap = new Map();
 //var sessionIds = new Map();
 
 
-class Todo1ChatBot {
+class chatBot {
 
     constructor() {
         this.apiaiApp = apiai(config.apiAI_token);
@@ -133,105 +133,6 @@ class Todo1ChatBot {
 
     }
 
-    callbackFacebookTransfer(id, message) {
-        let k;
-
-        this.sessionIds.forEach((value, key) => {
-            if (value === id) {
-                k = key;
-            }
-        });
-
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: { access_token: config.facebook_token },
-            method: 'POST',
-            json: {
-                recipient: { id: k },
-                message: message
-            }
-        }, (error, response) => {
-            if (error) {
-                console.log('Error sending message: ', error);
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error);
-            }
-        });
-
-    }
-
-    callbackTransfer(text, id, accountFrom) {
-        let k;
-
-        this.sessionIds.forEach((value, key) => {
-            if (value === id) {
-                k = key;
-            }
-        });
-
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: { access_token: config.facebook_token },
-            method: 'POST',
-            json: {
-                recipient: { id: k },
-                message: {
-                    attachment: {
-                        type: "image",
-                        payload: {
-                            url: "https://chatbot-todo1.herokuapp.com/" + id + ".png"
-                        }
-                    }
-                }
-            }
-        }, (error, response) => {
-            if (error) {
-                console.log('Error sending message: ', error);
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error);
-            } else {
-
-                request({
-                    url: 'https://graph.facebook.com/v2.6/me/messages',
-                    qs: { access_token: config.facebook_token },
-                    method: 'POST',
-                    json: {
-                        recipient: { id: k },
-                        message: {
-                            text: "Deseas realizar alguna otra operación?",
-                            quick_replies: [
-                                {
-                                    content_type: "text",
-                                    title: "Saldo de " + accountFrom,
-                                    payload: "saldo"
-                                },
-                                {
-                                    content_type: "text",
-                                    title: "Otra transferencia",
-                                    payload: "transferencia"
-                                },
-                                {
-                                    content_type: "text",
-                                    title: "¿Qué más puedo hacer?",
-                                    payload: "ayuda"
-                                }
-                            ]
-                        }
-                    }
-                }, (error, response) => {
-                    if (error) {
-                        console.log('Error sending message: ', error);
-                    } else if (response.body.error) {
-                        console.log('Error: ', response.body.error);
-
-                    }
-                });
-
-            }
-        });
-
-    }
-
     userInfoRequest(userId) {
         console.log('userInfoRequest-userId', userId);
 
@@ -282,141 +183,9 @@ class Todo1ChatBot {
                 }
             });
     }
-
-
-    setupMenu(res) {
-        var data = {
-            persistent_menu: [
-                {
-                    locale: "default",
-                    composer_input_disabled: false,
-                    "call_to_actions": [
-                        {
-                            "title": "Ayuda del chat",
-                            "type": "postback",
-                            "payload": "ayuda"
-                        },
-                        {
-                            "title": "Información de seguridad",
-                            "type": "postback",
-                            "payload": "informacion"
-                        }
-                    ]
-                }
-            ]
-        };
-
-        // Start the request
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-            qs: { access_token: config.facebook_token },
-            method: 'POST',
-            json: data
-        },
-            function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    // Print out the response body
-                    res.send(body);
-
-                } else {
-                    // TODO: Handle errors
-                    res.send(body);
-                }
-            });
-    }
-
-    setupAcountLinkingUrl(res) {
-        var data = {
-            account_linking_url: "https://chatbot-todo1.herokuapp.com/confirmAuth"
-        };
-
-        // Start the request
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
-            qs: { access_token: config.facebook_token },
-            method: 'POST',
-            json: data
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the response body
-                res.send(body);
-
-            } else {
-                // TODO: Handle errors
-                res.send(body);
-            }
-        });
-    }
-
-    findAccount(text, criterion) {
-
-        let cuenta = listAccounts.accounts.find((element) => {
-            return element.alias === text && element.propia === criterion
-        });
-
-        if (typeof cuenta === 'undefined') {
-            cuenta = listAccounts.accounts.find((element) => {
-                return element.type === text && element.propia === criterion
-            });
-        }
-
-        if (typeof cuenta === 'undefined') {
-            cuenta = listAccounts.accounts.find((element) => {
-                return element.id === text && element.propia === criterion
-            });
-        }
-
-        return cuenta;
-    }
-
-    listAccount(criterion) {
-
-        let list = listAccounts.accounts.filter((element) => {
-            return element.propia === criterion
-        });
-
-        return list;
-    }
-
-    getAccount(txt, criterion) {
-        let list = listAccounts.accounts.filter((element) => {
-            return element.id === txt && element.propia === criterion;
-        });
-
-        if (list.length === 0) {
-            list = listAccounts.accounts.filter((element) => {
-                return element.alias === txt && element.propia === criterion;
-            });
-        }
-
-        if (list.length === 0) {
-            list = listAccounts.accounts.filter((element) => {
-                return element.type === txt && element.propia === criterion;
-            });
-        }
-
-        return list;
-    }
-
-    listAccountDetail(id) {
-        let listDetail = listAccounts.details.filter((element) => {
-            return element.id === id
-        });
-
-        return listDetail;
-    }
-
-    listUser(user, pass){
-        let listUser = listAccounts.users.find((element) => {
-            return user === element.username && pass === element.password;
-        });
-
-        return listUser;
-    }
 }
 
-let todo1ChatBot = new Todo1ChatBot();
+let chatBot = new chatBot();
 const app = express();
 
 app.use(bodyParser.json());
@@ -456,17 +225,16 @@ app.post('/webhook', (req, res) => {
                 console.log("event");
                 console.log(event);
                 if (event.message && event.message.text) {
-                    todo1ChatBot.sendMessage(event.message.text, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.text, event.sender.id.toString());
                 } else if (event.message && event.message.sticker_id) {
-                    todo1ChatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
                 }else if (event.message && event.message.attachments) {
-                    todo1ChatBot.sendMessage(event.message.attachments, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.attachments, event.sender.id.toString());
                 } else if (event.postback && event.postback.payload === 'getStarted') {
-                    todo1ChatBot.sendMessage(event.postback.payload, event.sender.id.toString());
+                    chatBot.sendMessage(event.postback.payload, event.sender.id.toString());
                 }else{
-                    todo1ChatBot.sendEvent(event.postback.payload, event.sender.id.toString());
+                    chatBot.sendEvent(event.postback.payload, event.sender.id.toString());
                 }
-
             });
         });
         res.status(200).end();
