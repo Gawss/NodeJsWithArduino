@@ -46,6 +46,7 @@ exports.notifications = function (res, req) {
 	  text: text,
 	  quick_replies: quick_replies
 	}
+	console.log("cualquier cosa");
 	return res.json({
 		speech: text,
 		displayText: text,
