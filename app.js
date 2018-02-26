@@ -114,7 +114,7 @@ app.post('/ai', (req, res) => {
 			  text: text
 			}
             //notifications.notifications(res, req);
-			console.log(res.json);
+			console.log(res.json.toString());
 			return res.json({
 				speech: text,
 				displayText: text,
