@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const uuid = require('uuid');
 const fs = require('fs');
-
+var showmsg = 'hu3';
 //------------------------------------------------------------------- SERVER WORKING...
 const express = require('express');
 const app = express();
@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     console.log("get /----->");
     //res.status(200).send("correcto");
     res.send('Chatbot --- Created');
+	res.send(showmsg);
 });
 
 //-------------------------------------------------------------------
@@ -104,12 +105,15 @@ app.post('/ai', (req, res) => {
 //-----------------------------------------------------------------------------
 		case 'question':
             console.log('recived');
+			showmsg = 'msg recived';
 			let lol = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);			
 			if(lol === 'lol'){
+				showmsg = 'lol recived';
 				console.log("lol recived");
 				text = 'lol recived - hu3'
 			}
 			else{
+				showmsg = 'lol wasnt recived';
 				console.log("lol wasnt recived");
 				text = 'fak u'
 			}
