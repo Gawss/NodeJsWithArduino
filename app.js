@@ -2,10 +2,14 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const uuid = require('uuid');
 const fs = require('fs');
+const apiai = require('apiai');
 var showmsg = 'hu3';
 //------------------------------------------------------------------- SERVER WORKING...
 const express = require('express');
 const app = express();
+
+const userMap = new Map();
+var sessionIds = new Map();
 
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
@@ -20,9 +24,6 @@ app.get('/', (req, res) => {
 });
 
 //-------------------------------------------------------------------
-
-const userMap = new Map();
-var sessionIds = new Map();
 
 'use strict';
 var chatBot_ = require("./chatBot_class.js");
