@@ -4,6 +4,15 @@ const uuid = require('uuid');
 const fs = require('fs');
 const apiai = require('apiai');
 
+'use strict';
+var chatBot_ = require("./chatBot_class.js");
+var chatBot = new chatBot_();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('resources'));
+
+
 var showmsg = 'hu3';
 //------------------------------------------------------------------- SERVER WORKING...
 const express = require('express');
@@ -26,18 +35,11 @@ app.get('/', (req, res) => {
 
 //-------------------------------------------------------------------
 
-'use strict';
-var chatBot_ = require("./chatBot_class.js");
-var chatBot = new chatBot_();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('resources'));
 
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
     console.log("get----->");
-    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'Gawssduino') {
+    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'gawssduino') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
         res.status(403).end();
@@ -61,7 +63,7 @@ app.post('/webhook', (req, res) => {
                     chatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
                 }else if (event.message && event.message.attachments) {
                     chatBot.sendMessage(event.message.attachments, event.sender.id.toString());
-                } else if (event.postback && event.postback.payload === 'getStarted') {
+                }else if (event.postback && event.postback.payload === 'getStarted') {
                     chatBot.sendMessage(event.postback.payload, event.sender.id.toString());
                 }else{
                     chatBot.sendEvent(event.postback.payload, event.sender.id.toString());
@@ -93,6 +95,28 @@ app.post('/ai', (req, res) => {
 
     switch (action) {
 //-----------------------------------------------------------------------------
+        case 'input.welcome':
+            console.log(action, action);
+            return res.json({
+                speech: "login",
+                displayText: "login",
+                messages: {
+                    attachment: {
+                        type: "template",
+                        payload: {
+                            template_type: "button",
+                            text:req.body.result.fulfillment.messages[0].speech,
+                            buttons:[
+                                {
+
+                                }
+                            ]
+                        }
+                    }
+                },
+                source: 'saludo'
+            });
+        break;
 		case 'question':
             console.log('recived');
 			showmsg = 'msg recived';
