@@ -10,7 +10,7 @@ exports.notifications = function (res, req) {
 	//let sessionId = req.body.sessionId;
 	//let j = schedule.scheduleJob('/10 * * * * *', function(){console.log('The answer to life, the universe, and everything!');});
 	
-	if(quest === 'lol'){
+	if(quest == 'lol'){
 		console.log("lol");
 		//console.log("SESSION_ID---------------------------->", sessionId);
 		//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
@@ -29,7 +29,7 @@ exports.notifications = function (res, req) {
 			}
 		]
 	}
-	if(quest === 'ok'){
+	if(quest == 'ok'){
 		console.log("ok");
 		text = 'okkkkkkkkkkkk'	
 		quick_replies = [
