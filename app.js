@@ -210,8 +210,8 @@ app.get('/webhook', (req, res) => {
 
 app.get('/', (req, res) => {
     console.log("get /----->");
-    //res.status(200).send("correcto");
-    res.sendfile('demo.html');
+	res.send('Use the /webhook endpoint.')
+	
 });
 
 /* For Facebook Validation */
@@ -246,9 +246,6 @@ app.post('/ai', (req, res) => {
     console.log('*** Webhook for api.ai ***');
     //console.log(req.body.result);
 	console.log(req.body.result.fulfillment.messages[0]);
-
-    // Validate if user has type unless one time the password: for now with LOCAL STORAGE//
-    // -------------------------------------------------------------------------------- //
 
     //general variables for every action//
     let action = req.body.result.action;
