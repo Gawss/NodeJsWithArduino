@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const fs = require('fs');
 const apiai = require('apiai');
 
-'use strict';
+//'use strict';
 var chatBot_ = require("./chatBot_class.js");
 var chatBot = new chatBot_();
 
