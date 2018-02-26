@@ -95,28 +95,6 @@ app.post('/ai', (req, res) => {
 
     switch (action) {
 //-----------------------------------------------------------------------------
-        case 'input.welcome':
-            console.log(action, action);
-            return res.json({
-                speech: "login",
-                displayText: "login",
-                messages: {
-                    attachment: {
-                        type: "template",
-                        payload: {
-                            template_type: "button",
-                            text:req.body.result.fulfillment.messages[0].speech,
-                            buttons:[
-                                {
-
-                                }
-                            ]
-                        }
-                    }
-                },
-                source: 'saludo'
-            });
-        break;
 		case 'question':
             console.log('recived');
 			showmsg = 'msg recived';
