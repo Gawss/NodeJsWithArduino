@@ -36,7 +36,7 @@ app.use(express.static('resources'));
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
     console.log("get----->");
-    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'todo_test') {
+    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'Gawssduino') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
         res.status(403).end();
