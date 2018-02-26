@@ -15,7 +15,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 app.get('/', (req, res) => {
     console.log("get /----->");
     //res.status(200).send("correcto");
-    res.send('Chatbot --- Created');
+    //res.send('Chatbot --- Created');
 	res.send(showmsg);
 });
 
