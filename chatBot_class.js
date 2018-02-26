@@ -234,4 +234,7 @@ function callbackFacebook(id, menssage) {
 	});
 }
 
-module.exports = chatBot_
+module.exports = {
+	chatBot_: chatBot_,
+	callbackFacebook: callbackFacebook
+}
