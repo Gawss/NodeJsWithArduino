@@ -46,11 +46,14 @@ exports.notifications = function (res, req) {
 	  text: text,
 	  quick_replies: quick_replies
 	}
-	return res.json({
+	let jsnMsg = res.json({
 		speech: text,
 		displayText: text,
 		messages: message,
 		source: 'notificaciones'
 	});
-	console.log('--------------AFTER RETURN----------------');
+	console.log(jsnMsg.toString());
+	console.log('--------------BEFORE RETURN----------------');
+	return jsnMsg;
+	
 }
