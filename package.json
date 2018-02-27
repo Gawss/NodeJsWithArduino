@@ -1,28 +1,24 @@
 {
-  "name": "package",
+  "name": "fb-apiai",
   "version": "1.0.0",
-  "description": "\"NoteJs with Arduino App\"",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Gawss/NoteJsWithArduino.git"
-  },
-  "author": "Gawss",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Gawss/NoteJsWithArduino/issues"
-  },
-  "homepage": "https://github.com/Gawss/NoteJsWithArduino#readme",
   "dependencies": {
-    "apiai": "^4.0.3",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "fs": "0.0.1-security",
-    "request": "^2.83.0",
-    "uuid": "^3.2.1"
+    "apiai": "^4.0.1",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "node-schedule": "^1.3.0",
+    "request": "^2.81.0",
+    "text2png": "^1.0.1",
+    "uuid": "^3.0.1"
+  },
+  "engines": {
+    "node": "6.9.1",
+    "npm": "3.10.8"
   }
 }

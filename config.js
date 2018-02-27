@@ -6,3 +6,20 @@ module.exports = {
   v: "20180223"
 }
 
+module.exports.headers = {
+        "bankId": "1100",
+        "sessionId": "00125470",
+        "correlationId": "12345",
+        "triggerEvent": "1544",
+        "accountId": "853108043033910",
+        "regionCode": "ES",
+        "lang": "ES",
+        "appId": "OLB",
+        "channel": "001",
+        "metadata": "OFF",
+        "contentType": "application/json"
+      };
+
+module.exports.serverApiStore = 'https://demo01.todo1.com/t1-as-trx-web/rest/5.0';
+
+

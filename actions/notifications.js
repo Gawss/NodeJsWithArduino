@@ -1,3 +1,4 @@
+const schedule = require('node-schedule');
 const Accounts = require('../modelAccounts');
 
 exports.notifications = function (res, req) {
@@ -6,15 +7,16 @@ exports.notifications = function (res, req) {
 	let message;
 	let quick_replies = [];
 	let text = ' ';
-	let quest = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);
+	let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.notify_yes);
+	let negar = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.notify_no);
 	//let sessionId = req.body.sessionId;
 	//let j = schedule.scheduleJob('/10 * * * * *', function(){console.log('The answer to life, the universe, and everything!');});
 	
-	if(quest == 'lol'){
-		console.log("lol");
+	if(confir === 'si'){
+		console.log("Notify Si");
 		//console.log("SESSION_ID---------------------------->", sessionId);
 		//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
-		text = 'looooool'
+		text = 'Ok, te has suscrito correctamente al servicio de notificaciones, te enviare una alerta cada 10 segundos! :D'
 		
 		quick_replies = [
 			{
@@ -29,9 +31,9 @@ exports.notifications = function (res, req) {
 			}
 		]
 	}
-	if(quest == 'ok'){
-		console.log("ok");
-		text = 'okkkkkkkkkkkk'	
+	if(negar === 'no'){
+		console.log("Notify No");
+		text = 'Está bien, si cambias de opinión me avisas e.e'	
 		quick_replies = [
 			{
 			  content_type: "text",
@@ -46,7 +48,6 @@ exports.notifications = function (res, req) {
 	  text: text,
 	  quick_replies: quick_replies
 	}
-	console.log("cualquier cosa");
 	return res.json({
 		speech: text,
 		displayText: text,
