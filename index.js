@@ -201,16 +201,40 @@ const server = app.listen(process.env.PORT || 5000, () => {
     console.log("funciona------> get", __dirname);
 });
 
-/* For Facebook Validation */
+//--- For Facebook Validation ---
 app.get('/webhook', (req, res) => {
     console.log("get----->");
-    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'GawssToken') {
+    /*
+	if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'GawssToken') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
         res.status(403).end();
 		//Must be 500 error ??
     }
+	*/
+	
+	//----------------------------------------------------------------
+	let VERIFY_TOKEN = "GawssToken";
+	let mode = req.query['hub.mode'];
+	let token = req.query['hub.verify_token'];
+	let challenge = req.query['hub.challenge'];
+	
+	  if (mode && token) {
+
+		// Checks the mode and token sent is correct
+		if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+
+			// Responds with the challenge token from the request
+			console.log('WEBHOOK_VERIFIED');
+			res.status(200).send(challenge);
+
+		} else {
+			// Responds with '403 Forbidden' if verify tokens do not match
+			res.sendStatus(403);      
+		}
+	}
 });
+
 
 app.get('/', (req, res) => {
     console.log("get /----->");
@@ -221,6 +245,8 @@ app.get('/', (req, res) => {
 /* For Facebook Validation */
 /* Handling all messenges entered by the user */
 app.post('/webhook', (req, res) => {
+	
+	/*
     console.log("post----->");
     if (req.body.object === 'page') {
         req.body.entry.forEach((entry) => {
@@ -244,15 +270,27 @@ app.post('/webhook', (req, res) => {
         });
         res.status(200).end();
     }
+	*/
+	//------------------------https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup
+	
+	let body = req.body;
+	
+	if(body.object === 'page'){
+		body.entry.forEach(function(entry){
+			let webhook_event = entry.messaging[0];
+			console.log(webhook_event);
+		});
+		res.statur(200).send('EVENT_RECEIVED');
+	}else{
+		res.sendStatus(404);
+	}
+	
 });
 
 /* Webhook for API.ai to get response from the 3rd party API */
 app.post('/ai', (req, res) => {
     console.log('*** Webhook for api.ai ***');
     console.log(req.body.result);
-
-    // Validate if user has type unless one time the password: for now with LOCAL STORAGE//
-    // -------------------------------------------------------------------------------- //
 
     //general variables for every action//
     let action = req.body.result.action;
