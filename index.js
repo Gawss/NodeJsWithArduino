@@ -529,7 +529,7 @@ app.post('/ai', (req, res) => {
     let cuenta = req.body.result.parameters.cuenta;
     console.log(req.body.result.contexts.length);
     let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.confirm);
-    let t = ((typeof req.body.result.fulfillment.messages[0].speech === 'undefined') ? req.body.result.fulfillment.messages.text : req.body.result.fulfillment.messages[0].speech);
+    //let t = ((typeof req.body.result.fulfillment.messages[0].speech === 'undefined') ? req.body.result.fulfillment.messages.text : req.body.result.fulfillment.messages[0].speech);
     let accounts = todo1ChatBot.listAccount(true);
     let accountsDetail;
     let listAccounts = [];
