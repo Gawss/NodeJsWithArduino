@@ -273,6 +273,7 @@ app.post('/ai', (req, res) => {
 			
             notifications.notifications(res, req);
             break;
+	}
 //-----------------------------------------------------------------------------
 });
 
