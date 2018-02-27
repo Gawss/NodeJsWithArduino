@@ -7,12 +7,12 @@ exports.notifications = function (res, req) {
 	let message;
 	let quick_replies = [];
 	let text = ' ';
-	let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.notify_yes);
-	let negar = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.notify_no);
+	let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);
+	let negar = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);
 	//let sessionId = req.body.sessionId;
 	//let j = schedule.scheduleJob('/10 * * * * *', function(){console.log('The answer to life, the universe, and everything!');});
 	
-	if(confir === 'si'){
+	if(confir === 'lol'){
 		console.log("Notify Si");
 		//console.log("SESSION_ID---------------------------->", sessionId);
 		//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
@@ -31,7 +31,7 @@ exports.notifications = function (res, req) {
 			}
 		]
 	}
-	if(negar === 'no'){
+	if(negar === 'ok'){
 		console.log("Notify No");
 		text = 'Está bien, si cambias de opinión me avisas e.e'	
 		quick_replies = [
