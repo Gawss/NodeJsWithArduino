@@ -54,6 +54,10 @@ exports.notifications = function (res, req) {
 	});
 	console.log(jsnMsg.toString());
 	console.log('--------------BEFORE RETURN----------------');
-	return jsnMsg;
-	
+	if(jsnMsg.equals('')){
+		console.log('--------------JSON EMPTY----------------');
+	}
+	else{
+		return jsnMsg;
+	}
 }
