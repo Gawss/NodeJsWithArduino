@@ -205,7 +205,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 app.get('/webhook', (req, res) => {
     console.log("get----->");
     if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'GawssToken') {
-        res.status(205).send(req.query['hub.challenge']);
+        res.status(200).send(req.query['hub.challenge']);
     } else {
         res.status(403).end();
 		//Must be 500 error ??
