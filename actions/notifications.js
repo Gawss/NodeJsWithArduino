@@ -58,6 +58,7 @@ exports.notifications = function (res, req) {
 		console.log('--------------JSON EMPTY----------------');
 	}
 	else{
+		console.log('--------------JSON FULL----------------');
 		return jsnMsg;
 	}
 }
