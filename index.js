@@ -435,7 +435,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
     console.log("get----->");
-    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'gawssduino') {
+    if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'GawssToken') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
         res.status(403).end();
