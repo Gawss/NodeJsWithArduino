@@ -52,4 +52,5 @@ exports.notifications = function (res, req) {
 		messages: message,
 		source: 'notificaciones'
 	});
+	console.log('--------------AFTER RETURN----------------');
 }

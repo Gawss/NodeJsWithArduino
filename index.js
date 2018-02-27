@@ -272,8 +272,10 @@ app.post('/ai', (req, res) => {
             console.log("hola notificaciones");			
 			
             notifications.notifications(res, req);
+			console.log('--------------switch end----------------');
             break;
 	}
+	
 //-----------------------------------------------------------------------------
 });
 
