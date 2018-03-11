@@ -224,8 +224,9 @@ app.post('/webhook', (req, res) => {
         req.body.entry.forEach((entry) => {
             entry.messaging.forEach((event) => {
                 userMap.set("sender", event.sender.id);
-                console.log("event");
-                console.log(event);
+                //console.log("event");
+                //console.log(event);
+                console.log(event.sender.id)
                 if (event.message && event.message.text) {
                     chatBot.sendMessage(event.message.text, event.sender.id.toString());
                 } else if (event.message && event.message.sticker_id) {
@@ -259,7 +260,7 @@ app.post('/ai', (req, res) => {
     //---------------------------------//
 
     switch (action) {
-//-----------------------------------------------------------------------------
+
 		case 'arduino_turn_on':
             console.log("-- Command: Turn Arduino On --");
 			
