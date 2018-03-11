@@ -13,14 +13,14 @@ const session = require('./actions/session.js');
 const accounts = require('./actions/accounts.js');
 const movements = require('./actions/movements');
 const listAccounts = require('./model.js');
-const notifications = require('./actions/notifications.js');
+const turn_on = require('./actions/turn_on.js');
 
 
 const userMap = new Map();
 var sessionIds = new Map();
 
 
-class Todo1ChatBot {
+class chatBot_class {
 
     constructor() {
         this.apiaiApp = apiai(config.apiAI_token);
@@ -189,7 +189,7 @@ class Todo1ChatBot {
     }
 }
 
-let todo1ChatBot = new Todo1ChatBot();
+let chatBot = new chatBot_class();
 const app = express();
 
 app.use(bodyParser.json());
@@ -203,7 +203,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 //--- For Facebook Validation ---
 app.get('/webhook', (req, res) => {
-    console.log("get----->");
+    console.log("get/webhook----->");
     
 	if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'gawssduino') {
         res.status(200).send(req.query['hub.challenge']);
@@ -211,29 +211,6 @@ app.get('/webhook', (req, res) => {
         res.status(403).end();
 		//Must be 500 error ??
     }
-	
-	/*
-	//----------------------------------------------------------------
-	let VERIFY_TOKEN = "gawssduino";
-	let mode = req.query['hub.mode'];
-	let token = req.query['hub.verify_token'];
-	let challenge = req.query['hub.challenge'];
-	
-	  if (mode && token) {
-
-		// Checks the mode and token sent is correct
-		if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-
-			// Responds with the challenge token from the request
-			console.log('WEBHOOK_VERIFIED');
-			res.status(200).send(challenge);
-
-		} else {
-			// Responds with '403 Forbidden' if verify tokens do not match
-			res.sendStatus(403);      
-		}
-    }
-    */
 });
 
 
@@ -256,15 +233,15 @@ app.post('/webhook', (req, res) => {
                 console.log("event");
                 console.log(event);
                 if (event.message && event.message.text) {
-                    todo1ChatBot.sendMessage(event.message.text, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.text, event.sender.id.toString());
                 } else if (event.message && event.message.sticker_id) {
-                    todo1ChatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.sticker_id, event.sender.id.toString());
                 }else if (event.message && event.message.attachments) {
-                    todo1ChatBot.sendMessage(event.message.attachments, event.sender.id.toString());
+                    chatBot.sendMessage(event.message.attachments, event.sender.id.toString());
                 } else if (event.postback && event.postback.payload === 'getStarted') {
-                    todo1ChatBot.sendMessage(event.postback.payload, event.sender.id.toString());
+                    chatBot.sendMessage(event.postback.payload, event.sender.id.toString());
                 } else{
-                    todo1ChatBot.sendEvent(event.postback.payload, event.sender.id.toString());
+                    chatBot.sendEvent(event.postback.payload, event.sender.id.toString());
                 }
 
             });
@@ -272,20 +249,6 @@ app.post('/webhook', (req, res) => {
         res.status(200).end();
     }
 	
-	//------------------------https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup
-	/*
-	let body = req.body;
-	
-	if(body.object === 'page'){
-		body.entry.forEach(function(entry){
-			let webhook_event = entry.messaging[0];
-			console.log(webhook_event);
-		});
-		res.status(200).send('EVENT_RECEIVED');
-	}else{
-		res.sendStatus(404);
-	}
-	*/
 });
 
 /* Webhook for API.ai to get response from the 3rd party API */
@@ -297,20 +260,16 @@ app.post('/ai', (req, res) => {
     let action = req.body.result.action;
     let sessionId = req.body.sessionId;
 
-    console.log(req.body.result.contexts.length);
-    let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.confirm);
-    //let t = ((typeof req.body.result.fulfillment.messages[0].speech === 'undefined') ? req.body.result.fulfillment.messages.text : req.body.result.fulfillment.messages[0].speech);
-
     let quick_replies = [];
     let error = false;
     //---------------------------------//
 
     switch (action) {
 //-----------------------------------------------------------------------------
-		case 'notificaciones':
-            console.log("hola notificaciones");			
+		case 'arduino_turn_on':
+            console.log("Turn Arduino On");			
 			
-            notifications.notifications(res, req);
+            turn_on.turn_on(res, req);
 			console.log('--------------switch end----------------');
             break;
 	}
