@@ -214,7 +214,7 @@ app.get('/webhook', (req, res) => {
 	*/
 	
 	//----------------------------------------------------------------
-	let VERIFY_TOKEN = "GawssToken";
+	let VERIFY_TOKEN = "gawssduino";
 	let mode = req.query['hub.mode'];
 	let token = req.query['hub.verify_token'];
 	let challenge = req.query['hub.challenge'];
