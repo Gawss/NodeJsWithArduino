@@ -14,7 +14,7 @@ module.exports = class arduinoController{
             // Create an Led on pin 13
             
             this.led = new five.Led(13);
-    
+            console.log('wtf, arduino ready?!')
         });
     }
 }
