@@ -12,7 +12,7 @@ const turn_on = require('./actions/turn_on.js');
 //-------------------------------------------------------------------
 var appSocket = require('express')();
 var httpSocket = require('http').Server(appSocket);
-var io = require('socket.io')(http);
+var io = require('socket.io')(httpSocket);
 
 let variable = 'setOff';
 io.on('connection', function (socket){
