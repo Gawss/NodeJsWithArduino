@@ -4,15 +4,9 @@ const request = require('request');
 const uuid = require('uuid');
 const apiai = require('apiai');
 const fs = require('fs');
-const text2png = require('text2png');
 
 const config = require('./config.js');//Module that returns the tokens.
-const transfer = require('./actions/transfer.js');
-const balance = require('./actions/balance');
-const session = require('./actions/session.js');
-const accounts = require('./actions/accounts.js');
-const movements = require('./actions/movements');
-const listAccounts = require('./model.js');
+
 const turn_on = require('./actions/turn_on.js');
 
 
