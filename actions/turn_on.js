@@ -3,16 +3,15 @@ exports.turn_on = function (res, req) {
 	console.log('------->Turning On...');
 
 	let message;
-	let quick_replies = [];
+	//let quick_replies = [];
 	let text = ' ';
-	let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);
+	let command = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.cmd);
 	
-	if(confir === 'lol'){
-		console.log("looool");
-		//console.log("SESSION_ID---------------------------->", sessionId);
-		//let j = schedule.scheduleJob('*/10 * * * * *', function(){Accounts.callbackFacebook(sessionId, "Esto es una notificacion de prueba")});
-		text = 'Ok, lol recived...I will turn on the Arduino connection!'
+	if(command === 'on'){
+		console.log('Command "on" received');
 		
+		text = 'Ok, i will turn on the Arduino connection!'
+		/*
 		quick_replies = [
 			{
 			  content_type: "text",
@@ -20,23 +19,17 @@ exports.turn_on = function (res, req) {
 			  payload: "consulta_saldos"
 			}
 		]
+		*/
 	}
-	if(confir === 'ok'){
-		console.log("okkkkkk");
-		text = 'Está bien, si cambias de opinión me avisas e.e'	
-		quick_replies = [
-			{
-			  content_type: "text",
-			  title: '¿Qué más puedo hacer?',
-			  payload: "ayuda"
-			}
-		]
+	if(command === 'off'){
+		console.log('Command "off" received');
+		text = 'Ok, i will turn off the Arduino connection!'	
 
 	}
 	
 	message = {
-	  text: text,
-	  quick_replies: quick_replies
+	  text: text
+	  //, quick_replies: quick_replies
 	}
   return res.json({
     speech: text,

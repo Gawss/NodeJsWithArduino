@@ -253,8 +253,8 @@ app.post('/webhook', (req, res) => {
 
 /* Webhook for API.ai to get response from the 3rd party API */
 app.post('/ai', (req, res) => {
-    console.log('*** Webhook for api.ai ***');
-    console.log(req.body.result);
+    console.log('--------- Webhook for api.ai ---------');
+    //console.log(req.body.result);
 
     //general variables for every action//
     let action = req.body.result.action;
@@ -267,10 +267,9 @@ app.post('/ai', (req, res) => {
     switch (action) {
 //-----------------------------------------------------------------------------
 		case 'arduino_turn_on':
-            console.log("Turn Arduino On");			
+            console.log("-- Command: Turn Arduino On --");
 			
             turn_on.turn_on(res, req);
-			console.log('--------------switch end----------------');
             break;
 	}
 	
