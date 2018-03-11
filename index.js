@@ -204,15 +204,15 @@ const server = app.listen(process.env.PORT || 5000, () => {
 //--- For Facebook Validation ---
 app.get('/webhook', (req, res) => {
     console.log("get----->");
-    /*
-	if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'GawssToken') {
+    
+	if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'gawssduino') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
         res.status(403).end();
 		//Must be 500 error ??
     }
-	*/
 	
+	/*
 	//----------------------------------------------------------------
 	let VERIFY_TOKEN = "gawssduino";
 	let mode = req.query['hub.mode'];
@@ -232,7 +232,8 @@ app.get('/webhook', (req, res) => {
 			// Responds with '403 Forbidden' if verify tokens do not match
 			res.sendStatus(403);      
 		}
-	}
+    }
+    */
 });
 
 
@@ -246,7 +247,7 @@ app.get('/', (req, res) => {
 /* Handling all messenges entered by the user */
 app.post('/webhook', (req, res) => {
 	
-	/*
+	
     console.log("post----->");
     if (req.body.object === 'page') {
         req.body.entry.forEach((entry) => {
@@ -270,9 +271,9 @@ app.post('/webhook', (req, res) => {
         });
         res.status(200).end();
     }
-	*/
-	//------------------------https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup
 	
+	//------------------------https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup
+	/*
 	let body = req.body;
 	
 	if(body.object === 'page'){
@@ -284,7 +285,7 @@ app.post('/webhook', (req, res) => {
 	}else{
 		res.sendStatus(404);
 	}
-	
+	*/
 });
 
 /* Webhook for API.ai to get response from the 3rd party API */
