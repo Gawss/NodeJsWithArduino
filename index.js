@@ -198,7 +198,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 app.post('/request/post', (req, res) => {
 
     console.log('post request');
-    console.log(req);
+    console.log(req.body.key);
     res.send('post received');
 });
 
