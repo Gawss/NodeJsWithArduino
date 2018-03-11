@@ -195,6 +195,14 @@ const server = app.listen(process.env.PORT || 5000, () => {
     console.log("funciona------> get", __dirname);
 });
 
+app.post('/request/post', (req, res) => {
+
+    console.log('post request');
+    console.log(req);
+    res.send('post received');
+});
+
+
 //--- For Facebook Validation ---
 app.get('/webhook', (req, res) => {
     console.log("get/webhook----->");
