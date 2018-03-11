@@ -197,12 +197,13 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 app.post('/request/post', (req, res) => {
 
+    const cmdController = require('./actions/turn_on')
     console.log('post request');
     console.log(req.body.key);
     //res.send('post received');
 
     return res.json({
-        text: 'post received'
+        text: cmdController
       });
 });
 

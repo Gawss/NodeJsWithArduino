@@ -1,5 +1,7 @@
 
 exports.turn_on = function (res, req) {
+
+	let cmdController = 'setOff';
 	console.log('------->Turning On...');
 
 	let message;
@@ -12,6 +14,8 @@ exports.turn_on = function (res, req) {
 		console.log('Command "on" received');
 		
 		text = 'Ok, i will turn on the Arduino connection!'
+
+		cmdController = 'setOn';
 		/*
 		quick_replies = [
 			{
@@ -26,8 +30,10 @@ exports.turn_on = function (res, req) {
 		console.log('Command "off" received');
 		text = 'Ok, i will turn off the Arduino connection!'	
 
+		cmdController = 'setOff';
 	}
 	
+	module.exports.cmdController = cmdController;
 	message = {
 	  text: text
 	  //, quick_replies: quick_replies
