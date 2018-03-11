@@ -221,23 +221,11 @@ app.get('/toggleArduino', (req, res) => {
     res.send(variable.toString());
 });
 
-module.exports = function switchLed(cmdController){
+module.exports = function sendMsg_Arduino(cmdController){
     io.emit('message', { msg: cmdController});
 }
 
 //-------------------------------------------------------------------
-
-app.post('/request/post', (req, res) => {
-
-    const cmdController = require('./actions/turn_on')
-    console.log('post request');
-    console.log(req.body.key);
-    //res.send('post received');
-
-    return res.json({
-        text: cmdController
-      });
-});
 
 
 //--- For Facebook Validation ---

@@ -1,7 +1,7 @@
 
 exports.turn_on = function (res, req) {
 
-	const switchLed = require('../index')
+	const sendMsg_Arduino = require('../index')
 	let cmdController = 'setOff';
 	console.log('------->Turning On...');
 
@@ -14,7 +14,7 @@ exports.turn_on = function (res, req) {
 	if(command === 'on'){
 		console.log('Command "on" received');
 		
-		text = 'Ok, i will turn on the Arduino connection!'
+		text = 'Ok, i will turn on the led!'
 
 		cmdController = 'setOn';
 		/*
@@ -29,17 +29,18 @@ exports.turn_on = function (res, req) {
 	}
 	if(command === 'off'){
 		console.log('Command "off" received');
-		text = 'Ok, i will turn off the Arduino connection!'	
+		text = 'Ok, i will turn off the led!'	
 
 		cmdController = 'setOff';
 	}
 	if(command === 'toggle'){
 		console.log('Command "toggle" received');
+		cmdController = 'toggle';
 		text = 'Ok, i will toggle the Led!'	
-		switchLed(cmdController);
+		
 	}
+	sendMsg_Arduino(cmdController);
 	
-	module.exports.cmdController = cmdController;
 	message = {
 	  text: text
 	  //, quick_replies: quick_replies
