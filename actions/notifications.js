@@ -6,7 +6,7 @@ exports.notifications = function (res, req) {
 	let message;
 	let quick_replies = [];
 	let text = ' ';
-	let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.answer);
+	let confir = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.quest);
 	//let sessionId = req.body.sessionId;
 	//let j = schedule.scheduleJob('/10 * * * * *', function(){console.log('The answer to life, the universe, and everything!');});
 	
