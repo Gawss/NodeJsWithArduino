@@ -13,6 +13,8 @@ const turn_on = require('./actions/turn_on.js');
 const userMap = new Map();
 var sessionIds = new Map();
 
+const arduinoController = require('./actions/arduinoController.js')
+const arduino = new arduinoController;
 
 class chatBot_class {
 
@@ -213,6 +215,16 @@ app.get('/', (req, res) => {
     //res.status(200).send("correcto");
     res.send('Hu3');
 });
+
+app.get('/setupArduino', (req, res) => {
+    arduino.setUp_Arduino();
+    res.send('¡Arduino is ready!');
+});
+
+app.get('/toggleLed', (req, res) => {
+    arduino.toggleLed();
+    res.send('Holy shit, is this working?!');
+})
 
 /* For Facebook Validation */
 /* Handling all messenges entered by the user */
