@@ -195,8 +195,8 @@ const server = app.listen(process.env.PORT || 5000, () => {
 });
 
 //-------------------------------------------------------------------
-var httpSocket = require('http').Server(app);
-var io = require('socket.io')(httpSocket);
+
+var io = require('socket.io')(server);
 
 let variable = 'setOff';
 io.on('connection', function (socket){
@@ -206,10 +206,6 @@ io.on('connection', function (socket){
         console.log('MSG', from, ' saying ', msg);
         //io.emit('message', { msg: '¡Sockets connected successfully!'});
     });
-});
-
-httpSocket.listen(process.env.PORT || 5000, function () {
-    console.log('listening on *:5000');
 });
 
 app.get('/toggleArduino', (req, res) => {
