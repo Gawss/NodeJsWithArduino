@@ -199,7 +199,11 @@ app.post('/request/post', (req, res) => {
 
     console.log('post request');
     console.log(req.body.key);
-    res.send('post received');
+    //res.send('post received');
+
+    return res.json({
+        text: 'post received'
+      });
 });
 
 
