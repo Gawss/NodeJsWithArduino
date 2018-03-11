@@ -1,6 +1,7 @@
 
 exports.turn_on = function (res, req) {
 
+	const switchLed = require('../index')
 	let cmdController = 'setOff';
 	console.log('------->Turning On...');
 
@@ -31,6 +32,11 @@ exports.turn_on = function (res, req) {
 		text = 'Ok, i will turn off the Arduino connection!'	
 
 		cmdController = 'setOff';
+	}
+	if(command === 'toggle'){
+		console.log('Command "toggle" received');
+		text = 'Ok, i will toggle the Led!'	
+		switchLed(cmdController);
 	}
 	
 	module.exports.cmdController = cmdController;

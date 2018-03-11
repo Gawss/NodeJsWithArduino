@@ -221,6 +221,10 @@ app.get('/toggleArduino', (req, res) => {
     res.send(variable.toString());
 });
 
+module.exports = function switchLed(cmdController){
+    io.emit('message', { msg: cmdController});
+}
+
 //-------------------------------------------------------------------
 
 app.post('/request/post', (req, res) => {
