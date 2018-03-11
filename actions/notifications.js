@@ -46,19 +46,10 @@ exports.notifications = function (res, req) {
 	  text: text,
 	  quick_replies: quick_replies
 	}
-	let jsnMsg = res.json({
-		speech: text,
-		displayText: text,
-		messages: message,
-		source: 'notificaciones'
-	});
-	console.log(jsnMsg.toString());
-	console.log('--------------BEFORE RETURN----------------');
-	if(jsnMsg == ''){
-		console.log('--------------JSON EMPTY----------------');
-	}
-	else{
-		console.log('--------------JSON FULL----------------');
-		return jsnMsg;
-	}
+  return res.json({
+    speech: text,
+    displayText: text,
+    messages: message,
+    source: 'notificaciones'
+  });
 }
