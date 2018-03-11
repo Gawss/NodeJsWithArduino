@@ -9,10 +9,43 @@ const config = require('./config.js');//Module that returns the tokens.
 
 const turn_on = require('./actions/turn_on.js');
 
+//-------------------------------------------------------------------
+var appSocket = require('express')();
+var httpSocket = require('http').Server(appSocket);
+var io = require('socket.io')(http);
 
+let variable = 'setOff';
+io.on('connection', function (socket){
+    console.log('connection');
+
+    socket.on('CH01', function (from, msg) {
+        console.log('MSG', from, ' saying ', msg);
+        //io.emit('message', { msg: '¡Sockets connected successfully!'});
+    });
+});
+
+
+httpSocket.listen(process.env.PORT || 3000, () => {
+    console.log('Express server listening on port %d in %s mode', httpSocket.address().port, appSocket.settings.env);
+    console.log("funciona------> get", __dirname);
+});
+
+appSocket.get('/toggleArduino', (req, res) => {
+
+    if(variable === 'setOff'){
+        variable = 'setOn';
+    }
+    else{
+        variable = 'setOff';
+    }
+    io.emit('message', { msg: variable});
+
+    res.send(variable.toString());
+});
+
+//-------------------------------------------------------------------
 const userMap = new Map();
 var sessionIds = new Map();
-
 
 class chatBot_class {
 
