@@ -8,7 +8,7 @@ const fs = require('fs');
 const config = require('./config.js');//Module that returns the tokens.
 
 const turn_on = require('./actions/turn_on.js');
-
+const play_music = require('./actions/play_music.js');
 
 const userMap = new Map();
 var sessionIds = new Map();
@@ -295,9 +295,15 @@ app.post('/ai', (req, res) => {
     switch (action) {
 
 		case 'arduino_turn_on':
-            console.log("-- Command: Turn Arduino On --");
+            console.log("-- Command: arduino_turn_on --");
 			
             turn_on.turn_on(res, req);
+            break;
+
+        case 'play_music':
+            console.log('-- Command: play_music --')
+
+            play_music.play_music(res, req);
             break;
 	}
 	
