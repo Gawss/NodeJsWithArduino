@@ -3,7 +3,7 @@ exports.play_music = function (res, req) {
 
 	const sendMsg = require('../index')
 	let cmdController = 'never gonna give you up';
-	console.log('------->Turning On...');
+	console.log('------->Playing song ...');
 
 	let message;
 	//let quick_replies = [];
@@ -12,7 +12,7 @@ exports.play_music = function (res, req) {
 	
 	console.log('Command: ' + command);
 	if(command !== 'never gonna give you up'){
-		console.log('Command "on" received');
+		console.log('Command "play_music" received');
 		
 		text = 'Ok, i will play ' + command.toString();
 
