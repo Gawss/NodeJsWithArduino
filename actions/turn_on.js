@@ -1,7 +1,7 @@
 
 exports.turn_on = function (res, req) {
 
-	const sendMsg_Arduino = require('../index')
+	const sendMsg = require('../index')
 	let cmdController = 'setOff';
 	console.log('------->Turning On...');
 
@@ -39,7 +39,7 @@ exports.turn_on = function (res, req) {
 		text = 'Ok, i will toggle the Led!'	
 		
 	}
-	sendMsg_Arduino(cmdController);
+	sendMsg.sendMsg_Arduino(cmdController);
 	
 	message = {
 	  text: text

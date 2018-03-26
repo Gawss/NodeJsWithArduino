@@ -221,8 +221,16 @@ app.get('/toggleArduino', (req, res) => {
     res.send(variable.toString());
 });
 
-module.exports = function sendMsg_Arduino(cmdController){
+function sendMsg_Arduino(cmdController){
     io.emit('message', { msg: cmdController});
+}
+function sendMsg_playMusic(cmdController){
+    io.emit('playMusic', { msg: cmdController});
+}
+
+module.exports = {
+    sendMsg_Arduino,
+    sendMsg_playMusic
 }
 
 //-------------------------------------------------------------------

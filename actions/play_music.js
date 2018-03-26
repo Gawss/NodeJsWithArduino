@@ -1,7 +1,7 @@
 
 exports.play_music = function (res, req) {
 
-	const sendMsg_Arduino = require('../index')
+	const sendMsg = require('../index')
 	let cmdController = 'never gonna give you up';
 	console.log('------->Turning On...');
 
@@ -20,7 +20,7 @@ exports.play_music = function (res, req) {
 
 	}
 
-	sendMsg_Arduino(cmdController);
+	sendMsg.sendMsg_playMusic(cmdController);
 	
 	message = {
 	  text: text
