@@ -301,7 +301,7 @@ app.post('/ai', (req, res) => {
             break;
 
         case 'play_music':
-            console.log('-- Command: play_music --')
+            console.log('-- Command: play_music --');
 
             play_music.play_music(res, req);
             break;

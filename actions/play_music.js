@@ -10,7 +10,7 @@ exports.play_music = function (res, req) {
 	let text = ' ';
 	let command = ((typeof req.body.result.contexts === 'undefined' || req.body.result.contexts.length === 0) ? '' : req.body.result.contexts[0].parameters.song);
 	
-	console.log(command)
+	console.log('Command: ' + command);
 	if(command !== 'never gonna give you up'){
 		console.log('Command "on" received');
 		
