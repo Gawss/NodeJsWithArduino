@@ -14,7 +14,7 @@ exports.turn_on = function (res, req) {
 	if(command === 'on'){
 		console.log('Command "on" received');
 		
-		text = 'Ok, i will turn on the led!'
+		text = 'Ok, light on!'
 
 		cmdController = 'setOn';
 		/*
@@ -29,14 +29,14 @@ exports.turn_on = function (res, req) {
 	}
 	if(command === 'off'){
 		console.log('Command "off" received');
-		text = 'Ok, i will turn off the led!'	
+		text = 'Ok, light off!'	
 
 		cmdController = 'setOff';
 	}
 	if(command === 'toggle'){
 		console.log('Command "toggle" received');
 		cmdController = 'toggle';
-		text = 'Ok, i will toggle the Led!'	
+		text = 'Ok, light switched!'	
 		
 	}
 	sendMsg.sendMsg_Arduino(cmdController);
